@@ -53,4 +53,18 @@ Route::domain('shop.ele.com')->namespace('shop')->group(function () {
     Route::any('/user/edit/{id}',"UserController@edit")->name("user.edit");
     Route::get('/user/del/{id}',"UserController@del")->name("user.del");
     Route::any('/user/pass/{id}',"UserController@pass")->name("user.pass");
+
+
+    //菜品分类
+    Route::get('/menucategory/index',"MenuCategoryController@index")->name("menucategory.index");
+    Route::any('/menucategory/add',"MenuCategoryController@add")->name("menucategory.add");
+    Route::any('/menucategory/edit/{id}',"MenuCategoryController@edit")->name("menucategory.edit");
+    Route::get('/menucategory/del/{id}',"MenuCategoryController@del")->name("menucategory.del");
+
+    //菜品
+    Route::get('/menu/index',"MenuController@index")->name("menu.index");
+    Route::any('/menu/add',"MenuController@add")->name("menu.add");
+    Route::any('/menu/edit/{id}',"MenuController@edit")->name("menu.edit");
+    Route::get('/menu/del/{id}',"MenuController@del")->name("menu.del");
+
 });
