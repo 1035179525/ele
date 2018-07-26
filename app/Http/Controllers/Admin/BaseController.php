@@ -9,6 +9,6 @@ class BaseController extends Controller
 {
     public function __construct()
       {
-        $this->middleware('auth:admin')->except("login","add","index");
+        $this->middleware('auth:admin')->except("login","add");
       }
 }

@@ -42,6 +42,14 @@ Route::domain('admin.ele.com')->namespace('Admin')->group(function () {
     Route::get('/shop/del/{id}',"ShopController@del")->name("shop.del");
     Route::get('/shop/update/{id}',"ShopController@update")->name("shop.update");
     Route::get('/shop/status/{id}',"ShopController@status")->name("shop.status");
+
+    //活动管理
+    Route::get('/activity/index',"ActivityController@index")->name("activity.index");
+    Route::any('/activity/add',"ActivityController@add")->name("activity.add");
+    Route::any('/activity/edit/{id}',"ActivityController@edit")->name("activity.edit");
+    Route::any('/activity/del/{id}',"ActivityController@del")->name("activity.del");
+
+
 });
 //用户
 Route::domain('shop.ele.com')->namespace('shop')->group(function () {
@@ -65,6 +73,10 @@ Route::domain('shop.ele.com')->namespace('shop')->group(function () {
     Route::get('/menu/index',"MenuController@index")->name("menu.index");
     Route::any('/menu/add',"MenuController@add")->name("menu.add");
     Route::any('/menu/edit/{id}',"MenuController@edit")->name("menu.edit");
+    Route::any('/menu/upload',"MenuController@upload")->name("menu.upload");
     Route::get('/menu/del/{id}',"MenuController@del")->name("menu.del");
 
+
+    //活动列表
+    Route::get('/activity/index',"ActivityController@index")->name("activity.index1");
 });

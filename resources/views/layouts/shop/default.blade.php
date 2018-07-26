@@ -35,6 +35,10 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
+  <!-- 图片上传 -->
+  <link rel="stylesheet" type="text/css" href="/webuploader/webuploader.css">
+
+
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
@@ -314,5 +318,8 @@
 <script src="/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
+
+<script type="text/javascript" src="/webuploader/webuploader.js"></script>
 </body>
+@yield("js")
 </html>
