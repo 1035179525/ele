@@ -19,7 +19,7 @@
         <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label">记住我</label>
             <div class="col-sm-5">
-                <input type="checkbox" value="remember">
+                <input type="checkbox"  name="remember">
             </div>
         </div>
         <div class="form-group">

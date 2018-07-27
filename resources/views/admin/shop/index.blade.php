@@ -29,7 +29,7 @@
             <td>{{$user->email}}</td>
             <td>{{$user->getShop->shop_name}}</td>
             <td>{{$user->getShop->cate->name}}</td>
-            <td>{{$user->getShop->rating}}</td>
+            <td>{{$user->getShop->shop_rating}}</td>
             <td>{{$user->getShop->brand?"是":"否"}}</td>
             <td>{{$user->getShop->on_time?"是":"否"}}</td>
             <td>{{$user->getShop->fengniao?"是":"否"}}</td>
@@ -53,7 +53,7 @@
                 }
                     ?>
             </td>
-            <td><img src="{{'/app/'.$user->getShop->img}}" alt="" width="50"></td>
+            <td><img src="{{'/app/'.$user->getShop->shop_img}}" alt="" width="50"></td>
             <td>
                 @if ($user->getShop->status==0)
                     <a href="{{route("shop.update",$user->getShop->id)}}" class="btn btn-info">请审核</a>

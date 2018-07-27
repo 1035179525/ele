@@ -40,7 +40,7 @@
         <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label">店铺评分</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" id="inputPassword3" placeholder="" name="rating" value="{{old("rating",$shop->rating)}}">
+                <input type="text" class="form-control" id="inputPassword3" placeholder="" name="rating" value="{{old("rating",$shop->shop_rating)}}">
             </div>
         </div>
         <div class="form-group">
@@ -113,7 +113,7 @@
                 </textarea>
             </div>
         </div>
-        <img src="/app/{{$shop->img}}" alt="">
+        <img src="/app/{{$shop->shop_img}}" alt="">
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">店铺图片</label>
             <div class="col-sm-5">

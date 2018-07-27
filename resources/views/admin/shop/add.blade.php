@@ -41,7 +41,7 @@
         <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label">店铺评分</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" id="inputPassword3" placeholder="" name="rating">
+                <input type="text" class="form-control" id="inputPassword3" placeholder="" name="shop_rating">
             </div>
         </div>
         <div class="form-group">
@@ -117,7 +117,7 @@
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">店铺图片</label>
             <div class="col-sm-5">
-                <input type="file" name="img">
+                <input type="file" name="shop_img">
             </div>
         </div>
 

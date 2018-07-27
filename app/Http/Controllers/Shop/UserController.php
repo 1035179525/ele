@@ -37,7 +37,7 @@ class UserController extends Controller
                 "name"=>"required",
                 "password"=>"required",
             ]);
-            if(Auth::attempt(["name"=>$request->post("name"),"password"=>$request->post("password")],$request->post("remember"))){
+            if(Auth::attempt(["name"=>$request->post("name"),"password"=>$request->post("password")],$request->has("remember"))){
                 return redirect()->route("user.index");
             }else{
                 $request->session()->flash("danger","用户或者密码错误");
@@ -70,7 +70,7 @@ class UserController extends Controller
                 "name"=>"required|unique:users,name,$id",
                 "email"=>"required|unique:users,email,$id",
                 "shop_name"=>"required|unique:shops,shop_name,$id",
-                "rating"=>"required",
+                "shop_rating"=>"required",
                 "brand"=>"required",
                 "on_time"=>"required",
                 "fengniao"=>"required",
@@ -83,10 +83,10 @@ class UserController extends Controller
                 "send_cost"=>"required"
             ]);
             $data=$request->all();
-            $data["img"]=$shop->img;
+            $data["shop_img"]=$shop->img;
             //判断是否有图片上传
-            if($request->file("img")){
-                $data["img"]=$request->file("img")->store("shop","img");
+            if($request->file("shop_img")){
+                $data["shop_img"]=$request->file("shop_img")->store("shop","img");
             }
             //开启事务
             DB::transaction(function () use ($shop,$user,$data){
@@ -96,8 +96,6 @@ class UserController extends Controller
             $request->session()->flash("success","编辑成功");
             return redirect()->route("user.index");
         }
-
-
 
         return view("shop.user.edit",compact("user","cates","shop"));
     }

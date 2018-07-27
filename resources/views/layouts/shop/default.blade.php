@@ -37,6 +37,7 @@
 
   <!-- 图片上传 -->
   <link rel="stylesheet" type="text/css" href="/webuploader/webuploader.css">
+  <link rel="stylesheet" type="text/css" href="/webuploader/main.css">
 
 
   <!-- Google Font -->

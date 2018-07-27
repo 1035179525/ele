@@ -66,7 +66,7 @@ class AdminController extends BaseController
                 "name"=>"required",
                 "password"=>"required",
             ]);
-            if(Auth::guard("admin")->attempt(["name"=>$request->post("name"),"password"=>$request->post("password")],$request->post("remember"))){
+            if(Auth::guard("admin")->attempt(["name"=>$request->post("name"),"password"=>$request->post("password")],$request->has("remember"))){
                 return redirect()->route("shop.index");
             }else{
                  $request->session()->flash("danger","用户或者密码错误");
