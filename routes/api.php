@@ -19,3 +19,7 @@ use Illuminate\Http\Request;
 
 Route::get('/shop/list',"Api\ShopController@list");
 Route::get('/shop/index',"Api\ShopController@index");
+Route::post('/member/reg',"Api\MemberController@reg");
+Route::post('/member/login',"Api\MemberController@login");
+Route::any('/member/sms',"Api\MemberController@sms");
+
