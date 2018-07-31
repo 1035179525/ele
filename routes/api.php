@@ -17,9 +17,34 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
-Route::get('/shop/list',"Api\ShopController@list");
-Route::get('/shop/index',"Api\ShopController@index");
-Route::post('/member/reg',"Api\MemberController@reg");
-Route::post('/member/login',"Api\MemberController@login");
-Route::any('/member/sms',"Api\MemberController@sms");
+Route::namespace('Api')->group(function () {
 
+    //店铺
+    Route::get('/shop/list', "ShopController@list");
+    Route::get('/shop/index', "ShopController@index");
+
+    //会员注册
+    Route::post('/member/reg', "MemberController@reg");
+    Route::post('/member/login', "MemberController@login");
+    Route::any('/member/sms', "MemberController@sms");
+    Route::any('/member/detail', "MemberController@detail");
+    Route::any('/member/change', "MemberController@change");
+
+
+    //收货地址
+    Route::any('/address/add', "AddressController@add");
+    Route::any('/address/index', "AddressController@index");
+    Route::any('/address/edit', "AddressController@edit");
+    Route::any('/address/update', "AddressController@update");
+
+
+    //购物车
+    Route::any('/cart/add', "CartController@add");
+    Route::any('/cart/index', "CartController@index");
+
+    //订单
+    Route::any('/order/add', "OrderController@add");
+    Route::any('/order/index', "OrderController@index");
+    Route::any('/order/list', "OrderController@list");
+    Route::any('/order/pay', "OrderController@pay");
+});

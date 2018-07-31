@@ -12,7 +12,7 @@
         <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" id="inputPassword3" placeholder="" name="password" value="{{old("password")}}">
+                <input type="password" class="form-control" id="inputPassword3" placeholder="" name="password" value="{{old("password")}}">
             </div>
         </div>
         <div class="form-group">
