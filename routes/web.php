@@ -75,8 +75,21 @@ Route::domain('shop.ele.com')->namespace('shop')->group(function () {
     Route::any('/menu/edit/{id}',"MenuController@edit")->name("menu.edit");
     Route::any('/menu/upload',"MenuController@upload")->name("menu.upload");
     Route::get('/menu/del/{id}',"MenuController@del")->name("menu.del");
+    Route::any('/menu/day',"MenuController@day")->name("menu.day");
+    Route::any('/menu/month',"MenuController@month")->name("menu.month");
+    Route::any('/menu/year',"MenuController@year")->name("menu.year");
 
 
     //活动列表
     Route::get('/activity/index',"ActivityController@index")->name("activity.index1");
+
+    //订单管理
+    Route::get('/order/index',"OrderController@index")->name("order.index");
+    Route::get('/order/detail/{id}',"OrderController@detail")->name("order.detail");
+    Route::get('/order/send/{id}',"OrderController@send")->name("order.send");
+    Route::get('/order/cancel/{id}',"OrderController@cancel")->name("order.cancel");
+    Route::get('/order/day',"OrderController@day")->name("order.day");
+    Route::get('/order/month',"OrderController@month")->name("order.month");
+    Route::get('/order/year',"OrderController@year")->name("order.year");
+    Route::get('/order/total',"OrderController@total")->name("order.total");
 });

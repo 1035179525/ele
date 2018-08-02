@@ -53,6 +53,9 @@
                 <ul class="treeview-menu">
                     <li><a href="{{route("menu.index")}}"><i class="fa fa-circle-o"></i> 菜品列表</a></li>
                     <li><a href="{{route("menu.add")}}"><i class="fa fa-circle-o"></i> 菜品添加</a></li>
+                    <li><a href="{{route("menu.day")}}"><i class="fa fa-circle-o"></i> 菜品按天统计</a></li>
+                    <li><a href="{{route("menu.month")}}"><i class="fa fa-circle-o"></i> 菜品按月统计</a></li>
+                    <li><a href="{{route("menu.year")}}"><i class="fa fa-circle-o"></i> 菜品按年统计</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -69,15 +72,16 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-edit"></i> <span>Forms</span>
+                    <i class="fa fa-edit"></i> <span>订单管理</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-                    <li><a href="/pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-                    <li><a href="/pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+                    <li><a href="{{route("order.index")}}"><i class="fa fa-circle-o"></i> 订单首页</a></li>
+                    <li><a href="{{route("order.day")}}"><i class="fa fa-circle-o"></i> 订单按日统计</a></li>
+                    <li><a href="{{route("order.month")}}"><i class="fa fa-circle-o"></i> 订单按月统计</a></li>
+                    <li><a href="{{route("order.year")}}"><i class="fa fa-circle-o"></i> 订单按年统计</a></li>
                 </ul>
             </li>
             <li class="treeview">
