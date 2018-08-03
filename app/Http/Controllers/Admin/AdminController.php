@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class AdminController extends BaseController
 {
@@ -22,13 +23,16 @@ class AdminController extends BaseController
             ]);
             $data=$request->post();
             $data["password"]=bcrypt($data["password"]);
-            Admin::create($data);
+            $admin=Admin::create($data);
+            $admin->assignRole($request->post("role"));
             $request->session()->flash("sucees","提交成功");
+
             return redirect()->route("admin.index");
         }
+        //获取所有角色
+        $roles=Role::all();
 
-
-        return view("admin.admin.add");
+        return view("admin.admin.add",compact("roles"));
     }
     //编辑
     public function edit(Request $request,$id){
@@ -36,27 +40,40 @@ class AdminController extends BaseController
         if ($request->isMethod("post")){
             $this->validate($request,[
                 "name"=>"required|unique:admins,name,$admin->id",
-                "password"=>"required|confirmed",
+
                 "email"=>"required"
             ]);
             $password=$request->post("old_password");
+            $data=$request->post();
+            //如果有旧密码
+            if ($password!==null){
 
-            if (Hash::check($password,$admin->password)) {
-                $data=$request->post();
-                $data["password"]=bcrypt($data["password"]);
-                $admin->update($data);
-                $request->session()->flash("success","修改成功");
-                return redirect()->route("admin.index");
+                if (Hash::check($password,$admin->password)) {
+
+                    $data["password"]=bcrypt($data["password"]);
+                    $admin->update($data);
+                    $admin->assignRole($request->post("role"));
+                    $request->session()->flash("success","修改成功");
+                    return redirect()->route("admin.index");
+                }else{
+                    $request->session()->flash("danger","旧密码错误");
+                    return redirect()->back()->withInput();
+                }
+
+
             }else{
-                $request->session()->flash("danger","旧密码错误");
-                return redirect()->back()->withInput();
+                $admin->update($data);
+                $admin->syncRoles($request->post("role"));
+                return redirect()->route("admin.index")->with("success","修改成功");
             }
 
 
+
+
+
         }
-
-
-        return view("admin.admin.edit",compact("admin"));
+        $roles=Role::all();
+        return view("admin.admin.edit",compact("admin","roles"));
     }
 
     public function login(Request $request)

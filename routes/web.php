@@ -30,7 +30,9 @@ Route::domain('admin.ele.com')->namespace('Admin')->group(function () {
     Route::any('/admin/edit/{id}',"AdminController@edit")->name("admin.edit");
     Route::get('/admin/del/{id}',"AdminController@del")->name("admin.del");
 
-
+    //订单统计
+    Route::get('/order/day',"OrderController@day")->name("order.day1");
+    Route::get('/order/menu',"OrderController@menu")->name("order.menu");
 });
 
 //店铺
@@ -49,7 +51,16 @@ Route::domain('admin.ele.com')->namespace('Admin')->group(function () {
     Route::any('/activity/edit/{id}',"ActivityController@edit")->name("activity.edit");
     Route::any('/activity/del/{id}',"ActivityController@del")->name("activity.del");
 
+    //权限的添加
+    Route::any('/per/add',"PermissionController@add")->name("per.add");
+    Route::any('/per/index',"PermissionController@index")->name("per.index");
+    Route::any('/per/del/{id}',"PermissionController@del")->name("per.del");
 
+    //角色
+    Route::any('/role/add',"RoleController@add")->name("role.add");
+    Route::any('/role/index',"RoleController@index")->name("role.index");
+    Route::any('/role/del/{id}',"RoleController@del")->name("role.del");
+    Route::any('/role/edit/{id}',"RoleController@edit")->name("role.edit");
 });
 //用户
 Route::domain('shop.ele.com')->namespace('shop')->group(function () {

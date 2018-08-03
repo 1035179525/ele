@@ -54,8 +54,6 @@
                     <li><a href="{{route("menu.index")}}"><i class="fa fa-circle-o"></i> 菜品列表</a></li>
                     <li><a href="{{route("menu.add")}}"><i class="fa fa-circle-o"></i> 菜品添加</a></li>
                     <li><a href="{{route("menu.day")}}"><i class="fa fa-circle-o"></i> 菜品按天统计</a></li>
-                    <li><a href="{{route("menu.month")}}"><i class="fa fa-circle-o"></i> 菜品按月统计</a></li>
-                    <li><a href="{{route("menu.year")}}"><i class="fa fa-circle-o"></i> 菜品按年统计</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -79,9 +77,8 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{route("order.index")}}"><i class="fa fa-circle-o"></i> 订单首页</a></li>
-                    <li><a href="{{route("order.day")}}"><i class="fa fa-circle-o"></i> 订单按日统计</a></li>
-                    <li><a href="{{route("order.month")}}"><i class="fa fa-circle-o"></i> 订单按月统计</a></li>
-                    <li><a href="{{route("order.year")}}"><i class="fa fa-circle-o"></i> 订单按年统计</a></li>
+                    <li><a href="{{route("order.day")}}"><i class="fa fa-circle-o"></i> 订单统计</a></li>
+
                 </ul>
             </li>
             <li class="treeview">
