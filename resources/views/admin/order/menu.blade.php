@@ -31,7 +31,6 @@
             </select>
         </div>
 
-
         <button type="submit" class="btn btn-default">搜索</button>
     </form>
     <table class="table table-bordered table-hover">
