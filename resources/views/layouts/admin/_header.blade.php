@@ -16,36 +16,17 @@
             <ul class="nav navbar-nav">
                 <li><a href="/about">关于我们<span class="sr-only">(current)</span></a></li>
                 <li><a href="/help" class="active">帮助</a></li>
+                @foreach(\App\Models\Nav::where("pid","0")->get() as $nav)
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">商家分类管理<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$nav->name}}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{route("shopcategory.index")}}">商家分类首页</a></li>
-                        <li><a href="{{route("shopcategory.add")}}">商家添加</a></li>
-
+                            @foreach(\App\Models\Nav::where("pid",$nav->id)->orderBy("sort","desc")->get() as $n)
+                            <li><a href="{{route($n->url)}}">{{$n->name}}</a></li>
+                    @endforeach
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">商铺管理 <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{route("shop.index")}}">商铺首页</a></li>
-                        <li><a href="{{route("shop.add")}}">商铺添加</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">管理员管理 <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{route("admin.index")}}">管理员列表</a></li>
-                        <li><a href="{{route("admin.add")}}">管理员添加</a></li>
-                        <li role="separator" class="divider"></li>
-                    </ul>
-                </li>
+                    @endforeach
             </ul>
-            <form class="navbar-form navbar-left" method="get" action="">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
             <ul class="nav navbar-nav navbar-right">
 
                 @auth("admin")

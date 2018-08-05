@@ -17,10 +17,6 @@
             <td>{{date("Y-m-d",$activity->start_time)}}</td>
             <td>{{date("Y-m-d",$activity->end_time)}}</td>
             <td>{!! $activity->content !!}</td>
-            <td>
-                <a href="{{route("activity.edit",$activity)}}" class="btn btn-success">编辑</a>
-                <a href="{{route("activity.del",$activity)}}" class="btn btn-danger">删除</a>
-            </td>
         </tr>
         @endforeach
 

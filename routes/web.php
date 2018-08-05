@@ -61,6 +61,17 @@ Route::domain('admin.ele.com')->namespace('Admin')->group(function () {
     Route::any('/role/index',"RoleController@index")->name("role.index");
     Route::any('/role/del/{id}',"RoleController@del")->name("role.del");
     Route::any('/role/edit/{id}',"RoleController@edit")->name("role.edit");
+
+    //导航
+    Route::any('/nav/add',"NavController@add")->name("nav.add");
+    Route::any('/nav/index',"NavController@index")->name("nav.index");
+    Route::any('/nav/edit/{id}',"NavController@edit")->name("nav.edit");
+    Route::any('/nav/del/{id}',"NavController@del")->name("nav.del");
+
+    //会员
+    Route::any('/member/index',"MemberController@index")->name("member.index");
+    Route::any('/member/update/{id}',"MemberController@update")->name("member.update");
+
 });
 //用户
 Route::domain('shop.ele.com')->namespace('shop')->group(function () {
@@ -104,3 +115,5 @@ Route::domain('shop.ele.com')->namespace('shop')->group(function () {
     Route::get('/order/year',"OrderController@year")->name("order.year");
     Route::get('/order/total',"OrderController@total")->name("order.total");
 });
+
+

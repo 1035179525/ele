@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Mail\OrderShipped;
+use App\Mail\ShopShipped;
 use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Member;
@@ -9,10 +11,13 @@ use App\Models\Menu;
 use App\Models\Order;
 use App\Models\OrderGoods;
 use App\Models\Shop;
+use App\models\User;
 use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Mrgoon\AliSms\AliSms;
 use function Sodium\crypto_box_publickey_from_secretkey;
 
 class OrderController extends BaseController
@@ -20,9 +25,12 @@ class OrderController extends BaseController
     //订单添加
     public function add()
     {
+
         //接受参数
         //会员ID
         $uid = \request()->input("user_id");
+
+        $member=Member::find($uid);
         //地址ID
         $aid = \request()->input("address_id");
         //找到购物车
@@ -31,6 +39,7 @@ class OrderController extends BaseController
         $data["user_id"] = $uid;
         $data["shop_id"] = Menu::find($carts[0]->goods_id)->shop_id;
         //找到地址
+
         $adrress = Address::find($aid);
         $data["name"] = $adrress->name;
         $data["provence"] = $adrress->provence;
@@ -55,9 +64,9 @@ class OrderController extends BaseController
             //清除购物车
             Cart::where("user_id",$order->user_id)->delete();
 
-
+            $all[]="";
             //订单商品表
-            foreach ($carts as $cart) {
+            foreach ($carts as $k=>$cart) {
                 $goods = Menu::find($cart->goods_id);
                 $arr = [
                     "order_id" => $order->id,
@@ -67,8 +76,25 @@ class OrderController extends BaseController
                     "goods_img" => $goods->goods_img,
                     "amount" => $cart->amount,
                 ];
-                OrderGoods::create($arr);
+                $orderGoods= OrderGoods::create($arr);
+                $all[$k]=$orderGoods->toArray();
             }
+
+            $config = [
+                'access_key' => 'LTAIuVDbqGu6Yxms',
+                'access_secret' => 'U77PHfiOJxbLu9Vn9eweU4ElAtlPqS',
+                'sign_name' => '刘松',
+            ];
+
+            $product=$order->sn;
+
+            $tel=$member->tel;
+            $sms=new AliSms();
+            $response = $sms->sendSms($tel, 'SMS_141575113', ['product'=> $product], $config);
+            //找到店铺
+            $user=User::where("shop_id",$data["shop_id"])->first();
+            Mail::to($user)->send(new OrderShipped($all));
+
             //提交
             DB::commit();
 

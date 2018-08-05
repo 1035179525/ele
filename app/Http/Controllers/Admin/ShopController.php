@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Mail\ShopShipped;
 use App\Models\Shop;
 use App\Models\ShopCategory;
 use App\models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class ShopController extends BaseController
 {
@@ -23,6 +25,10 @@ class ShopController extends BaseController
         $shop=Shop::find($id);
         $shop->status=1;
         $shop->save();
+
+
+        $user=User::where("shop_id",$id)->first();
+        Mail::to($user)->send(new ShopShipped($shop));
         $request->session()->flash("success","修改成功");
         return redirect()->route("shop.index");
     }
