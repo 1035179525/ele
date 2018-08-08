@@ -51,6 +51,23 @@ Route::domain('admin.ele.com')->namespace('Admin')->group(function () {
     Route::any('/activity/edit/{id}',"ActivityController@edit")->name("activity.edit");
     Route::any('/activity/del/{id}',"ActivityController@del")->name("activity.del");
 
+    //抽奖管理
+    //活动管理
+    Route::get('/event/index',"EventController@index")->name("event.index");
+    Route::any('/event/add',"EventController@add")->name("event.add");
+    Route::any('/event/edit/{id}',"EventController@edit")->name("event.edit");
+    Route::any('/event/del/{id}',"EventController@del")->name("event.del");
+    Route::any('/event/detail/{id}',"EventController@detail")->name("event.detail");
+    Route::any('/event/open/{id}',"EventController@open")->name("event.open");
+
+    //奖品管理
+    Route::get('/prize/index',"EventPrizeController@index")->name("prize.index");
+    Route::any('/prize/add',"EventPrizeController@add")->name("prize.add");
+    Route::any('/prize/edit/{id}',"EventPrizeController@edit")->name("prize.edit");
+    Route::any('/prize/del/{id}',"EventPrizeController@del")->name("prize.del");
+
+
+
     //权限的添加
     Route::any('/per/add',"PermissionController@add")->name("per.add");
     Route::any('/per/index',"PermissionController@index")->name("per.index");
@@ -114,6 +131,16 @@ Route::domain('shop.ele.com')->namespace('shop')->group(function () {
     Route::get('/order/month',"OrderController@month")->name("order.month");
     Route::get('/order/year',"OrderController@year")->name("order.year");
     Route::get('/order/total',"OrderController@total")->name("order.total");
+
+
+
+    //抽奖列表
+    Route::get('/event/index',"EventController@index")->name("event.index1");
+    Route::get('/event/detail/{id}',"EventController@detail")->name("event.detail1");
+    Route::any('/event/update/{id}',"EventController@detail")->name("event.detail1");
+
+    //抽奖报名
+    Route::any('/eventuser/add/{id}',"EventUserController@add")->name("eventuser.add");
 });
 
 
